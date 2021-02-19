@@ -1,0 +1,363 @@
+swagger: '2.0'
+info:
+  title: ${DEVOPS_PRODUCT_NAME}
+  x-ibm-name: ${DEVOPS_PRODUCT_NAME}
+  version: ${DEVOPS_API_VERSION}
+x-ibm-configuration:
+  cors:
+    enabled: true
+  gateway: datapower-api-gateway
+  type: rest
+  phase: realized
+  enforced: true
+  testable: true
+  assembly:
+    execute:
+      - invoke:
+          title: invoke
+          version: 2.0.0
+          verb: keep
+          target-url: $(target-url)$(request.path)
+          follow-redirects: false
+          timeout: 60
+          parameter-control:
+            type: blacklist
+          header-control:
+            type: blacklist
+            values:
+              - ^X-IBM-Client-Id$
+          inject-proxy-headers: true
+  properties:
+    target-url:
+      value: ${DEVOPS_TARGET_ENDPOINT}
+      description: The URL of the target service
+      encoded: false
+securityDefinitions:
+  clientID:
+     type: apiKey
+     in: header
+     name: X-IBM-Client-Id
+  clientSecret:
+     type: apiKey
+     in: header
+     name: X-IBM-Client-Secret
+security:
+  - clientID: []
+    clientSecret: []
+schemes:
+  - https
+paths:
+  /quotes:
+    post:
+      summary: Create Fee Quote
+      operationId: createQuote
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      description: Calculate Fees for the requested Product/Service
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/ipoFeeRequest'
+          description: The request body for the operation
+          required: true
+        - name: X-Ipo-Conversation-Id
+          in: header
+          type: string
+        - name: X-Ipo-Sender-Party
+          in: header
+          type: string
+        - name: X-Ipo-Date-Time
+          in: header
+          type: string
+          required: true
+        - name: X-Ipo-Verb
+          in: header
+          type: string
+        - name: X-Ipo-Functional-Area
+          in: header
+          type: string
+        - name: X-Ipo-Reference-Id
+          in: header
+          type: string
+          required: true
+        - name: X-Ipo-Domain
+          in: header
+          type: string
+          required: true
+        - name: X-Ipo-Business-Tran-Id
+          in: header
+          type: string
+          required: true
+        - name: X-Ipo-Recipient-Party
+          in: header
+          type: string
+        - name: X-Ipo-Logging
+          in: header
+          type: string
+      responses:
+        '201':
+          description: Success response
+          headers:
+            X-Ipo-Conversation-Id:
+              type: string
+            X-Ipo-Sender-Party:
+              type: string
+            X-Ipo-Date-Time:
+              type: string
+            X-Ipo-Verb:
+              type: string
+            X-Ipo-Functional-Area:
+              type: string
+            X-Ipo-Reference-Id:
+              type: string
+            X-Ipo-Domain:
+              type: string
+            X-Ipo-Business-Tran-Id:
+              type: string
+            X-Ipo-Recipient-Party:
+              type: string
+            X-Ipo-Logging:
+              type: string
+          schema:
+            $ref: '#/definitions/ipoFeeResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errorResponse'
+        '401':
+          description: Authentication Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/errorResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/errorResponse'
+  /health/live:
+    get:
+      summary: Liveness health probe
+      operationId: liveness
+      responses:
+        '200':
+          description: Success response
+        '401':
+          description: Authentication Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/errorResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/errorResponse'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /health/ready:
+    get:
+      summary: Readiness probe
+      operationId: readiness
+      responses:
+        '200':
+          description: Success response
+        '401':
+          description: Authentication Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/errorResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/errorResponse'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+basePath: /ipo/fees
+definitions:
+  ipoFeeRequest:
+    type: object
+    required:
+      - feeCalculation
+    properties:
+      feeCalculation:
+        type: array
+        items:
+          $ref: '#/definitions/feeRequest'
+  ipoFeeResponse:
+    type: object
+    required:
+      - feeCalculation
+    properties:
+      feeCalculation:
+        type: array
+        items:
+          $ref: '#/definitions/feeResponse'
+  feeRequest:
+    type: object
+    required:
+      - productRight
+      - productService
+    properties:
+      paymentChannel:
+        type: string
+        description: Payment Channel Choosen
+        example: BANK_TRANSFER
+      paymentOption:
+        type: string
+        description: Payment Option Opted for
+        example: PAY_NOW
+      dateTime:
+        type: string
+        format: date-time
+        description: Date time of Fee Request.
+        example: '2017-01-01T10:10:10Z'
+      productRight:
+        type: string
+        description: Type of the right claimed
+        example: TRADEMARK
+      productService:
+        type: string
+        description: Type of the Service Requested
+        example: APPLICATION_TO_REGISTER_A_TRADE_MARK
+      productVariant:
+        type: array
+        description: Type of Class
+        items:
+          $ref: '#/definitions/productVariant'
+      productData:
+        type: array
+        description: Additional data needed for fee calculation
+        items:
+          $ref: '#/definitions/productData'
+  feeResponse:
+    type: object
+    required:
+      - fee
+      - feeBreakdown
+    properties:
+      paymentChannel:
+        type: string
+        description: Payment Channel Choosen
+        example: BANK_TRANSFER
+      paymentOption:
+        type: string
+        description: Payment Option Opted for
+        example: PAY_NOW
+      fee:
+        type: number
+        format: float
+        description: Total Fee in GBP
+        example: 100
+      dateTime:
+        type: string
+        format: date-time
+        description: Date time of Fee Request.
+        example: '2017-01-01T10:10:10Z'
+      productRight:
+        type: string
+        description: Type of the right claimed
+        example: TRADEMARK
+      productService:
+        type: string
+        description: Type of the Service Requested
+        example: APPLICATION_TO_REGISTER_A_TRADE_MARK
+      productVariant:
+        type: array
+        description: Type of Class
+        items:
+          $ref: '#/definitions/productVariant'
+      productData:
+        type: array
+        description: Additional data needed for fee calculation
+        items:
+          $ref: '#/definitions/productData'
+      feeBreakdown:
+        type: array
+        description: Itemised Fee in GBP
+        items:
+          $ref: '#/definitions/feeBreakdown'
+  productVariant:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Identifier for the selected class(es)
+        example: Class1 to Class45 for trademarks
+  productData:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Additional data Attribute name
+        example: number-of-claims
+      value:
+        type: string
+        description: Additional data Attribute Value
+        example: '25'
+  feeBreakdown:
+    type: object
+    properties:
+      name:
+        type: string
+        description: feeBreakdown  Attribute name
+        example: Class 1
+      value:
+        type: number
+        description: feeBreakdown  Attribute value
+        format: float
+        example: 50
+      description:
+        type: string
+        description: feeBreakdown  Attribute Description
+        example: Fee for Class 1
+  errorResponse:
+    type: object
+    required:
+      - meta
+    properties:
+      meta:
+        required:
+          - error
+        type: object
+        properties:
+          error:
+            $ref: '#/definitions/errorDetails'
+  errorDetails:
+    type: array
+    items:
+      required:
+        - code
+        - detail
+      type: object
+      properties:
+        serviceName:
+          type: string
+        code:
+          type: string
+        detail:
+          type: string

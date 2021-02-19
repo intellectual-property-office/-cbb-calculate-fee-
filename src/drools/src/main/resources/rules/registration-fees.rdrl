@@ -1,0 +1,31 @@
+package rules;
+import uk.gov.ipo.feecalculations.rules.model.Rule;
+import uk.gov.ipo.feecalculations.rules.model.FeeItem;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.ArrayList;
+
+rule "REGISTRATION: Trademark"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Trademark Registration Fee", new BigDecimal(170)));
+end;
+
+rule "REGISTRATION: Design"
+
+when
+    rule : Rule(productRight == "DESIGN" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "APPLICATION_TO_REGISTER_ONE_OR_MORE_DESIGNS")
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Design Registration Fee", new BigDecimal(120)));
+end;
+
+rule "REGISTRATION: Patent"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_FOR_GRANT_OF_A_PATENT")
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+end;

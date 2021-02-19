@@ -1,0 +1,530 @@
+{
+	"info": {
+		"_postman_id": "59345cd4-4ed5-4bb0-b6c1-52728a0d22e2",
+		"name": "CalculateFee-UnitTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CalculateFee-Health-LivenessCheck",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "005b9d3b-9374-452e-9550-47f688cabc9a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Ipo-Business-Tran-Id",
+						"value": "1234567",
+						"type": "text"
+					},
+					{
+						"key": "X-Ipo-Reference-Id",
+						"value": "54321",
+						"type": "text"
+					},
+					{
+						"key": "X-Ipo-Domain",
+						"value": "Patents",
+						"type": "text"
+					},
+					{
+						"key": "X-Ipo-Date-Time",
+						"value": "2020-06-11T11:12:10.111Z",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/ipo/fees/health/live",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"ipo",
+						"fees",
+						"health",
+						"live"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CalculateFee-Health-ReadinessCheck",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75b0b2d8-a502-4c83-b2d0-95d0f2f9ac4d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Ipo-Business-Tran-Id",
+						"value": "1234567",
+						"type": "text"
+					},
+					{
+						"key": "X-Ipo-Reference-Id",
+						"value": "54321",
+						"type": "text"
+					},
+					{
+						"key": "X-Ipo-Domain",
+						"value": "Patents",
+						"type": "text"
+					},
+					{
+						"key": "X-Ipo-Date-Time",
+						"value": "2020-06-11T11:12:10.111Z",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/ipo/fees/health/ready",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"ipo",
+						"fees",
+						"health",
+						"ready"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HappyPath - Trademarks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "81d6aedd-685d-4ed0-8a7b-4e4b292ece4a",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Fee Returned Successfully\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.feeCalculation[0].fee = 370.00)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Ipo-Business-Tran-Id",
+						"value": "1234567",
+						"type": "text"
+					},
+					{
+						"key": "X-Ipo-Reference-Id",
+						"value": "54321",
+						"type": "text"
+					},
+					{
+						"key": "X-Ipo-Domain",
+						"value": "Patents",
+						"type": "text"
+					},
+					{
+						"key": "X-Ipo-Date-Time",
+						"value": "2020-06-11T11:12:10.111Z",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"feeCalculation\": [\r\n        {\"dateTime\": \"\",\r\n    \"productRight\": \"TRADEMARK\",\r\n    \"productService\": \"APPLICATION_TO_REGISTER_A_TRADE_MARK\",\r\n\t\"productVariant\": [\r\n        {\r\n          \"name\": \"Class1\"\r\n        }\r\n\t\t,\r\n\t\t{\r\n          \"name\": \"Class2\"\r\n        }\r\n      ],\r\n\r\n    \"productData\": [\r\n      {\r\n        \"name\": \"number-of-claims\",\r\n        \"value\": \"25\"\r\n      },\r\n      {\r\n        \"name\": \"number-of-claims1\",\r\n        \"value\": \"20\"\r\n      }\r\n    ],\r\n    \"paymentChannel\": \"BANK_TRANSFER\",\r\n    \"paymentOption\": \"PAY_NOW\"}]\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/ipo/fees/quotes",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"ipo",
+						"fees",
+						"quotes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HappyPath - Patents",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9c2efa2-21d8-48bc-b9d3-4d7838d94f76",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Fee Returned Successfully\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.feeCalculation[0].fee = 370.00)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Ipo-Business-Tran-Id",
+						"type": "text",
+						"value": "1234567"
+					},
+					{
+						"key": "X-Ipo-Reference-Id",
+						"type": "text",
+						"value": "54321"
+					},
+					{
+						"key": "X-Ipo-Domain",
+						"type": "text",
+						"value": "Patents"
+					},
+					{
+						"key": "X-Ipo-Date-Time",
+						"type": "text",
+						"value": "2020-06-11T11:12:10.111Z"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"feeCalculation\": [\r\n        {\"dateTime\": \"\",\r\n    \"productRight\": \"PATENT\",\r\n    \"productService\": \"REQUEST_A_SEARCH_FOR_A_UK_APPLICATION\",\r\n    \"productData\": [\r\n      {\r\n        \"name\": \"number-of-claims\",\r\n        \"value\": \"25\"\r\n      },\r\n      {\r\n        \"name\": \"number-of-claims1\",\r\n        \"value\": \"20\"\r\n      }\r\n    ],\r\n    \"paymentChannel\": \"BANK_TRANSFER\",\r\n    \"paymentOption\": \"PAY_NOW\"}]\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/ipo/fees/quotes",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"ipo",
+						"fees",
+						"quotes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MissingMandatoryField-ProductRight",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2d77c10-d406-434a-aa8c-a70509545ee6",
+						"exec": [
+							"pm.test(\"400 Bad Request -  Missing Mandatory product Right\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Missing mandatory fields in JSON Request productRight\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.meta.error[0].detail).to.eql(\"Missing mandatory fields in JSON Request productRight\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Ipo-Business-Tran-Id",
+						"type": "text",
+						"value": "1234567"
+					},
+					{
+						"key": "X-Ipo-Reference-Id",
+						"type": "text",
+						"value": "54321"
+					},
+					{
+						"key": "X-Ipo-Domain",
+						"type": "text",
+						"value": "Patents"
+					},
+					{
+						"key": "X-Ipo-Date-Time",
+						"type": "text",
+						"value": "2020-06-11T11:12:10.111Z"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"feeCalculation\": [\r\n        {\"dateTime\": \"\",\r\n    \"productRight\": \"\",\r\n    \"productService\": \"APPLICATION_TO_REGISTER_A_TRADE_MARK\",\r\n\t\"productVariant\": [\r\n        {\r\n          \"name\": \"Class1\"\r\n        }\r\n\t\t,\r\n\t\t{\r\n          \"name\": \"Class2\"\r\n        }\r\n      ],\r\n\r\n    \"productData\": [\r\n      {\r\n        \"name\": \"number-of-claims\",\r\n        \"value\": \"25\"\r\n      },\r\n      {\r\n        \"name\": \"number-of-claims1\",\r\n        \"value\": \"20\"\r\n      }\r\n    ],\r\n    \"paymentChannel\": \"BANK_TRANSFER\",\r\n    \"paymentOption\": \"PAY_NOW\"}]\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/ipo/fees/quotes",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"ipo",
+						"fees",
+						"quotes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MissingMandatoryField-ProductService",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a2fa33d-aad3-4c45-819a-114f38426f3c",
+						"exec": [
+							"pm.test(\"400 Bad Request -  Missing Mandatory -  productService\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Missing mandatory fields in JSON Request - productService\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.meta.error[0].detail).to.eql(\"Missing mandatory fields in JSON Request productService\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Ipo-Business-Tran-Id",
+						"type": "text",
+						"value": "1234567"
+					},
+					{
+						"key": "X-Ipo-Reference-Id",
+						"type": "text",
+						"value": "54321"
+					},
+					{
+						"key": "X-Ipo-Domain",
+						"type": "text",
+						"value": "Patents"
+					},
+					{
+						"key": "X-Ipo-Date-Time",
+						"type": "text",
+						"value": "2020-06-11T11:12:10.111Z"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"feeCalculation\": [\r\n        {\"dateTime\": \"\",\r\n    \"productRight\": \"TRADEMARK\",\r\n    \"productService\": \"\",\r\n\t\"productVariant\": [\r\n        {\r\n          \"name\": \"Class1\"\r\n        }\r\n\t\t,\r\n\t\t{\r\n          \"name\": \"Class2\"\r\n        }\r\n      ],\r\n\r\n    \"productData\": [\r\n      {\r\n        \"name\": \"number-of-claims\",\r\n        \"value\": \"25\"\r\n      },\r\n      {\r\n        \"name\": \"number-of-claims1\",\r\n        \"value\": \"20\"\r\n      }\r\n    ],\r\n    \"paymentChannel\": \"BANK_TRANSFER\",\r\n    \"paymentOption\": \"PAY_NOW\"}]\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/ipo/fees/quotes",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"ipo",
+						"fees",
+						"quotes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Backend Service Connection Error -500",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Ipo-Business-Tran-Id",
+						"type": "text",
+						"value": "1234567"
+					},
+					{
+						"key": "X-Ipo-Reference-Id",
+						"type": "text",
+						"value": "54321"
+					},
+					{
+						"key": "X-Ipo-Domain",
+						"type": "text",
+						"value": "Patents"
+					},
+					{
+						"key": "X-Ipo-Date-Time",
+						"type": "text",
+						"value": "2020-06-11T11:12:10.111Z"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"feeCalculation\": [\r\n        {\"dateTime\": \"\",\r\n    \"productRight\": \"TRADEMARK\",\r\n    \"productService\": \"APPLICATION_TO_REGISTER_A_TRADE_MARK\",\r\n\t\"productVariant\": [\r\n        {\r\n          \"name\": \"Class1\"\r\n        }\r\n\t\t,\r\n\t\t{\r\n          \"name\": \"Class2\"\r\n        }\r\n      ],\r\n\r\n    \"productData\": [\r\n      {\r\n        \"name\": \"number-of-claims\",\r\n        \"value\": \"25\"\r\n      },\r\n      {\r\n        \"name\": \"number-of-claims1\",\r\n        \"value\": \"20\"\r\n      }\r\n    ],\r\n    \"paymentChannel\": \"BANK_TRANSFER\",\r\n    \"paymentOption\": \"PAY_NOW\"}]\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/ipo/fees/quotes",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"ipo",
+						"fees",
+						"quotes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Backend Service Drools Not Available -503",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Ipo-Business-Tran-Id",
+						"type": "text",
+						"value": "1234567"
+					},
+					{
+						"key": "X-Ipo-Reference-Id",
+						"type": "text",
+						"value": "54321"
+					},
+					{
+						"key": "X-Ipo-Domain",
+						"type": "text",
+						"value": "Patents"
+					},
+					{
+						"key": "X-Ipo-Date-Time",
+						"type": "text",
+						"value": "2020-06-11T11:12:10.111Z"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"feeCalculation\": [\r\n        {\"dateTime\": \"\",\r\n    \"productRight\": \"TRADEMARK\",\r\n    \"productService\": \"APPLICATION_TO_REGISTER_A_TRADE_MARK\",\r\n\t\"productVariant\": [\r\n        {\r\n          \"name\": \"Class1\"\r\n        }\r\n\t\t,\r\n\t\t{\r\n          \"name\": \"Class2\"\r\n        }\r\n      ],\r\n\r\n    \"productData\": [\r\n      {\r\n        \"name\": \"number-of-claims\",\r\n        \"value\": \"25\"\r\n      },\r\n      {\r\n        \"name\": \"number-of-claims1\",\r\n        \"value\": \"20\"\r\n      }\r\n    ],\r\n    \"paymentChannel\": \"BANK_TRANSFER\",\r\n    \"paymentOption\": \"PAY_NOW\"}]\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/ipo/fees/quotes",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"ipo",
+						"fees",
+						"quotes"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

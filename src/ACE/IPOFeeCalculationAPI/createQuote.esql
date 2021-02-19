@@ -1,0 +1,119 @@
+PATH uk.gov.ipo.common,uk.gov.ipo.logging, uk.gov.ipo.exception,uk.gov.ipo.utilities;
+/* ------------------------------------------------------------------------------------------------------------------------------------
+        Program Details:
+        ---------------
+ 		This interface is Common building block - 'Fee Calculation' Service. It validate,tranforms the request and call Drools Service.
+ 		Gets the response back from Drools, transforms and routes it to the requested application.
+ ---------------------------------------------------------------------------------------------------------------------------------------*/
+
+CREATE COMPUTE MODULE CreateQuote_ValidateMandatoryFields
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		-- Variable and Reference declarations
+		DECLARE inRef,inFeeCalcRef REFERENCE TO InputRoot;
+		DECLARE envRef	REFERENCE TO Environment;
+		DECLARE isExceptionRecorded BOOLEAN FALSE;
+		DECLARE missingMandatoryFields CHARACTER '';
+	    DECLARE missingMandatoryFieldErrorCode CHARACTER 'E.IPO.00012';
+	    DECLARE missingMandatoryFieldErrorText CHARACTER 'Missing mandatory fields in JSON Request #fieldName#';
+		
+		IF NOT EXISTS(Environment.Variables[]) THEN
+			CREATE FIELD Environment.Variables AS envRef;
+		END IF;
+		
+		-- Copies the Original InputRoot and Inputlocalenvironment into environment for future reference. 
+		SET envRef.OrgMsg.Msg		= InputRoot;
+		SET envRef.OrgMsg.localEnv	=  InputLocalEnvironment;
+			
+		-- Validate the input parameters
+		IF EXISTS(inRef.JSON.Data.feeCalculation.Item[]) THEN
+			MOVE inFeeCalcRef TO inRef.JSON.Data.feeCalculation.Item;	
+			WHILE(LASTMOVE(inFeeCalcRef))DO
+				IF (NOT hasText(inFeeCalcRef.productRight)) THEN
+		 	       CALL addToCommonErrorStoreWithService(Environment,'IPOFees', missingMandatoryFieldErrorCode, REPLACE(missingMandatoryFieldErrorText, '#fieldName#', 'productRight'));
+		           SET isExceptionRecorded = TRUE;		    			
+				END IF;
+				
+				IF (NOT hasText(inFeeCalcRef.productService)) THEN
+		 	       CALL addToCommonErrorStoreWithService(Environment,'IPOFees', missingMandatoryFieldErrorCode, REPLACE(missingMandatoryFieldErrorText, '#fieldName#', 'productService'));
+		           SET isExceptionRecorded = TRUE;						
+				END IF;
+				
+				MOVE inFeeCalcRef NEXTSIBLING REPEAT TYPE NAME;
+			END WHILE;	
+
+		ELSE
+		  CALL addToCommonErrorStoreWithService(Environment,'IPOFees', missingMandatoryFieldErrorCode, REPLACE(missingMandatoryFieldErrorText, '#fieldName#', 'productRight'));
+		   CALL addToCommonErrorStoreWithService(Environment,'IPOFees', missingMandatoryFieldErrorCode, REPLACE(missingMandatoryFieldErrorText, '#fieldName#', 'productService'));
+		  SET isExceptionRecorded = TRUE;
+		END IF;	
+		
+	    IF ( isExceptionRecorded ) THEN
+			CALL error(Environment,'Missing Mandatory Field(s)'); 
+			CALL sendHTTP400Response(Environment);
+		RETURN FALSE;		
+		END IF;	
+		
+		RETURN TRUE;	
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE CreateQuote_BuildResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		-- Variable and Reference declarations
+		DECLARE inRef,inFeeCalcRef REFERENCE TO InputRoot;
+		DECLARE outRef,outDataRef,outHeadRef,outFeeCalcRef REFERENCE TO OutputRoot;
+		DECLARE outLocalEnv,hTTPReplyHeaderRef	REFERENCE TO OutputLocalEnvironment;
+		DECLARE envRef,envHeaderRef	REFERENCE TO Environment.Variables;
+		DECLARE feeString CHARACTER '';
+		
+		-- Copy the properties 
+		SET outRef.Properties	= inRef.Properties;
+		
+		SET outLocalEnv			=  envRef.OrgMsg.localEnv;
+		
+		CREATE NEXTSIBLING OF OutputRoot.Properties AS hTTPReplyHeaderRef NAME 'HTTPReplyHeader';
+		CALL copyCommonHeaderFromEnvironmentToHTTPReply(Environment, hTTPReplyHeaderRef);
+		
+		SET hTTPReplyHeaderRef."Content-Type" = 'application/json';
+
+		MOVE envHeaderRef TO envRef.OrgMsg.Msg.HTTPInputHeader;
+		
+		-- Builds the Response message 
+		CREATE LASTCHILD OF OutputRoot AS outRef DOMAIN ('JSON') NAME ('JSON');
+		CREATE FIELD outRef.Data AS outRef IDENTITY Data;
+		
+		MOVE inRef TO inRef.JSON.Data;
+		MOVE inFeeCalcRef TO inRef.feeCalculation.Item;
+		
+	    -- Mapping the body details
+		CREATE FIELD outRef.feeCalculation AS outFeeCalcRef IDENTITY (JSON.Array)feeCalculation;
+		CREATE FIELD outFeeCalcRef.feeCalculation AS outFeeCalcRef IDENTITY feeCalculation;
+		
+		SET outFeeCalcRef.paymentChannel	= inFeeCalcRef.paymentChannel;	
+		SET outFeeCalcRef.paymentOption		= inFeeCalcRef.paymentOption;
+		
+		SET feeString	= CAST(CAST(THE(SELECT SUM(fee.value) FROM inFeeCalcRef.feeBreakdown.Item[] AS fee)AS DECIMAL)AS CHARACTER);
+		IF(CONTAINS(feeString, '.')) THEN
+			SET outFeeCalcRef.fee				= SUBSTRING(feeString BEFORE '.')||'.'||SUBSTRING(feeString AFTER '.' FOR 2);
+		ELSE
+			SET outFeeCalcRef.fee				= CAST(feeString||'.00' AS DECIMAL);
+		END IF;
+		SET outFeeCalcRef.dateTime			= inFeeCalcRef.dateTime;
+		SET outFeeCalcRef.productRight		= inFeeCalcRef.productRight;
+		SET outFeeCalcRef.productService	= inFeeCalcRef.productService;
+		SET outFeeCalcRef.productVariant	= inFeeCalcRef.productVariant;
+		SET outFeeCalcRef.productData		= inFeeCalcRef.productData;
+		SET outFeeCalcRef.feeBreakdown		= inFeeCalcRef.feeBreakdown;
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 201;
+		RETURN TRUE;
+	END;
+	
+END MODULE;

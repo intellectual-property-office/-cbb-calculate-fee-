@@ -1,0 +1,29 @@
+info:
+  version: ${DEVOPS_API_VERSION}
+  title: ${DEVOPS_PRODUCT_NAME}
+  name: ${DEVOPS_PRODUCT_NAME}
+apis:
+    calculatefee1.0.0:
+      name: '${DEVOPS_PRODUCT_NAME}:${DEVOPS_API_VERSION}'
+gateways:
+    - datapower-api-gateway
+plans:
+    default-plan:
+      title: Default Plan
+      description: Default Plan
+      approval: false
+      rate-limits:
+        default:
+          value: 100/1hour
+product: 1.0.0
+visibility:
+    view:
+      enabled: true
+      type: public
+      tags: []
+      orgs: []
+    subscribe:
+      enabled: true
+      type: authenticated
+      tags: []
+      orgs: []

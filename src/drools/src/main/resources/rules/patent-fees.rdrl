@@ -1,0 +1,279 @@
+package rules;
+
+import uk.gov.ipo.feecalculations.rules.model.Rule;
+import uk.gov.ipo.feecalculations.rules.model.FeeItem;
+import uk.gov.ipo.feecalculations.rules.model.ProductDataItem;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.ArrayList;
+
+rule "PATENT: Applying for a search - 1 claim"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 1)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 2 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 2)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 3 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 3)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 4 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 4)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 5 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 5)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 6 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 6)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 7 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 7)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 8 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 8)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 9 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 9)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 10 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 10)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 11 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 11)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 12 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 12)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 13 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 13)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 14 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 14)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 15 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 15)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 16 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 16)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 17 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 17)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 18 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 18)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 19 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 19)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 20 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 20)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 21 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 21)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 22 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 22)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 23 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 23)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 24 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 24)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search - 25 claims"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 25)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(150)));
+end;
+
+rule "PATENT: Applying for a search + a claim over 25 pages - 26"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 26)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(170)));
+end;
+
+rule "PATENT: Applying for a search + a claim over 25 pages - 27"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 27)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(190)));
+end;
+
+rule "PATENT: Applying for a search + a claim over 25 pages - 28"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 28)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(210)));
+end;
+
+rule "PATENT: Applying for a search + a claim over 25 pages - 29"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 29)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(230)));
+end;
+
+rule "PATENT: Applying for a search + a claim over 25 pages - 30"
+
+when
+    rule : Rule(productRight == "PATENT" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productService == "REQUEST_A_SEARCH_FOR_A_UK_APPLICATION" && productData.contains(new ProductDataItem("number-of-claims", 30)));
+then
+    rule.getFeeBreakdown().add(new FeeItem("registration_fee", "Patent Registration Fee", new BigDecimal(60)));
+    rule.getFeeBreakdown().add(new FeeItem("patent_search", "Patent Search", new BigDecimal(250)));
+end;

@@ -1,0 +1,370 @@
+package rules;
+
+import uk.gov.ipo.feecalculations.rules.model.Rule;
+import uk.gov.ipo.feecalculations.rules.model.FeeItem;
+import uk.gov.ipo.feecalculations.rules.model.ProductVariant;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.ArrayList;
+
+rule "TRADEMARK: Class 1"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class1")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class1", "Class 1", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 2"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class2")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class2", "Class 2", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 3"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class3")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class3", "Class 3", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 4"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class4")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class4", "Class 4", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 5"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class5")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class5", "Class 5", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 6"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class6")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class6", "Class 6", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 7"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class7")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class7", "Class 7", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 8"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class8")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class8", "Class 8", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 9"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class9")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class9", "Class 9", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 10"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class10")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class10", "Class 10", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 11"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class11")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class11", "Class 11", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 12"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class12")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class12", "Class 12", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 13"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class13")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class13", "Class 13", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 14"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class14")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class14", "Class 14", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 15"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class15")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class15", "Class 15", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 16"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class16")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class16", "Class 16", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 17"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class17")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class17", "Class 17", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 18"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class18")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class18", "Class 18", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 19"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class19")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class19", "Class 19", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 20"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class20")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class20", "Class 20", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 21"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class21")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class21", "Class 21", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 22"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class22")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class22", "Class 22", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 23"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class23")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class23", "Class 23", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 24"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class24")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class24", "Class 24", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 25"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class25")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class25", "Class 25", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 26"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class26")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class26", "Class 26", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 27"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class27")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class27", "Class 27", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 28"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class28")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class28", "Class 28", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 29"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class29")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class29", "Class 29", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 30"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class30")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class30", "Class 30", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 31"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class31")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class31", "Class 31", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 32"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class32")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class32", "Class 32", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 33"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class33")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class33", "Class 33", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 34"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class34")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class34", "Class 34", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 35"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class35")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class35", "Class 35", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 36"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class36")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class36", "Class 36", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 37"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class37")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class37", "Class 37", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 38"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class38")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class38", "Class 38", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 39"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class39")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class39", "Class 39", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 40"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class40")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class40", "Class 40", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 41"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class41")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class41", "Class 41", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 42"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class42")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class42", "Class 42", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 43"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class43")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class43", "Class 43", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 44"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class44")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class44", "Class 44", new BigDecimal(50)));
+end;
+
+rule "TRADEMARK: Class 45"
+
+when
+    rule : Rule(productRight == "TRADEMARK" && paymentOption == "PAY_NOW" && paymentChannel == "BANK_TRANSFER" && productVariant.contains(new ProductVariant("Class45")) && productService == "APPLICATION_TO_REGISTER_A_TRADE_MARK")
+then
+    rule.getFeeBreakdown().add(new FeeItem("trademark_class45", "Class 45", new BigDecimal(50)));
+end;
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="swagger_20" definitionFile="swagger.json" implementation="gen/IPOFeeCalculationAPI.msgflow" https="false">
+    <references/>
+    <ns2:operations>
+        <ns2:operation name="createQuote" implementation="CreateQuote.subflow"/>
+        <ns2:operation name="liveness" implementation="liveness.subflow"/>
+        <ns2:operation name="readiness" implementation="readiness.subflow"/>
+    </ns2:operations>
+    <ns2:errorHandlers>
+        <ns2:errorHandler type="CATCH" implementation="IPOFeeCalculationAPIInputCatchHandler.subflow"/>
+        <ns2:errorHandler type="FAILURE" implementation="IPOFeeCalculationAPIInputFailureHandler.subflow"/>
+        <ns2:errorHandler type="TIMEOUT" implementation="IPOFeeCalculationAPIInputTimeoutHandler.subflow"/>
+    </ns2:errorHandlers>
+</ns2:restapiDescriptor>

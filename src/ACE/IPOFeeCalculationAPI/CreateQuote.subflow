@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:CallDrools.subflow="CallDrools.subflow" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:uk_gov_ipo_exception_RestAPIExceptionHandler.subflow="uk/gov/ipo/exception/RestAPIExceptionHandler.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="CreateQuote.subflow" nsPrefix="CreateQuote.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="CreateQuote" bundleName="CreateQuote" pluginId="IPOFeeCalculationAPI"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IPOFeeCalculationAPI/icons/full/obj16/CreateQuote.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IPOFeeCalculationAPI/icons/full/obj30/CreateQuote.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input_1" location="19,30">
+        <translation xmi:type="utility:TranslatableString" key="Input" bundleName="CreateQuote" pluginId="IPOFeeCalculationAPI"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="899,39">
+        <translation xmi:type="utility:TranslatableString" key="Output" bundleName="CreateQuote" pluginId="IPOFeeCalculationAPI"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="213,29" computeExpression="esql://routine/#CreateQuote_ValidateMandatoryFields.Main" computeMode="destination">
+        <translation xmi:type="utility:ConstantString" string="ValidateMandatoryFields"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="691,34" computeExpression="esql://routine/#CreateQuote_BuildResponse.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="BuildResponse"/>
+      </nodes>
+      <nodes xmi:type="uk_gov_ipo_exception_RestAPIExceptionHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_3" location="70,33">
+        <translation xmi:type="utility:ConstantString" string="RestAPIExceptionHandler"/>
+      </nodes>
+      <nodes xmi:type="CallDrools.subflow:FCMComposite_1" xmi:id="FCMComposite_1_6" location="552,34">
+        <translation xmi:type="utility:ConstantString" string="CallDrools"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="OutTerminal.Output_1" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_3" sourceNode="InTerminal.Input_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input1"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.Output1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>
